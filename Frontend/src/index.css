@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-heading:"Roboto",
+}
+
+@layer components{
+    li{
+        @apply hover:underline transition-all cursor-pointer
+    }
+
+    body{
+        @apply bg-black min-h-screen text-white overflow-x-hidden
+    }
+
+    .btn{
+        @apply bg-white px-7 py-2 text-black rounded-lg text-[1.2rem] cursor-pointer hover:opacity-80 transition-colors duration-500
+    }
+
+    *{
+        @apply selection:bg-white selection:text-black
+    }
+
+    .ribh{
+        @apply bg-white text-black my-3 uppercase font-heading
+        text-[5rem] font-bold px-5 py-3 text-center 
+        tracking-wider absolute;
+    }
+}
