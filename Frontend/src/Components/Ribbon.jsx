@@ -28,7 +28,7 @@ const Ribbon = () => {
 
   return (
     <div 
-      className="h-350 md:h-350 overflow-hidden flex flex-col gap-8 relative w-full items-center justify-between mt-36 "
+      className="h-1050 md:h-350 overflow-hidden flex flex-col gap-8 relative w-full items-center md:justify-between mt-36 "
       ref={ribRef}
     >  
         <h1 className='ribh ribh2 top-[20%] -rotate-12 left-[-20%]'>Connect to your loved ones</h1>
@@ -38,7 +38,6 @@ const Ribbon = () => {
           <Btn />
         </div>
 
-        {/* BOTTOM SECTION: Cards */}
         <div className='absolute top-[65%]'>
           <Cards />
         </div>

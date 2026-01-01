@@ -12,7 +12,6 @@ const Navbar = () => {
   const { scrollYProgress } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Lock body scroll when menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -22,7 +21,6 @@ const Navbar = () => {
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
-  // Navbar blur + bg on scroll
   const backgroundColor = useTransform(
     scrollYProgress,
     [0, 0.05],
@@ -46,9 +44,8 @@ const Navbar = () => {
           WebkitBackdropFilter: backdropFilter,
         }}
       >
-        <h1 className="text-[1.75rem] font-semibold">Sync</h1>
+        <Link className="text-[1.75rem] font-semibold" to='/'>Sync</Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex gap-5 text-[1.1rem] items-center">
           <Link to="/">Join as Guest</Link>
           <Link to="/register">Register</Link>
@@ -57,7 +54,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile Icon */}
         {isOpen ? (
           <RxCross1
             className="md:hidden text-white cursor-pointer text-[2rem] z-40"
@@ -71,7 +67,6 @@ const Navbar = () => {
         )}
       </motion.div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div

@@ -3,7 +3,7 @@ import {motion,useMotionValue,useSpring, useTransform} from 'motion/react'
 
 const Cards = () => {
   return (
-    <div className='md:flex mt-12 gap-22 '>
+    <div className='flex flex-col md:flex-row mt-12 gap-22 '>
         <TiltCards src='/Copy.png'/>
         <TiltCards/>
         <TiltCards src='/Share.png'/>

@@ -1,7 +1,6 @@
 import express from  'express'
 import mongoose from 'mongoose';
 import http from "http"
-import {Server} from 'socket.io'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
@@ -16,8 +15,9 @@ const uri = process.env.MONGO_URI;
 const io = connectToSocket(server);
 
 const corsOptions = {
-    origin:"http://localhost:5173/",
+    origin:"http://localhost:5173",
     credentials:true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 }
 
 app.use(cookieParser());

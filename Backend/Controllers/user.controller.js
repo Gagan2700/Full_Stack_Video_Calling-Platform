@@ -1,9 +1,16 @@
 import User from '../Models/user.js';
 import bcrypt from 'bcrypt';
 import generateToken from '../Utils/generateToken.js';
+import userSchema from '../Utils/SchemaValidator.js';
 
 const signup = async (req, res) => {
     try {
+        const { error } = userSchema.validate(req.body);
+        console.log(error);
+        if (error) {
+            return res.status(400).json({ msg: error.details[0].message });
+        }
+
         const { name, username, password } = req.body;
 
         const existingUser = await User.findOne({ username });
@@ -24,14 +31,14 @@ const signup = async (req, res) => {
         res
             .cookie("token", token, {
                 httpOnly: true,
-                sameSite: "strict",
-                secure: process.env.NODE_ENV === "production",
+                sameSite: "lax",
+                secure: false,
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             })
             .status(201)
             .json({ msg: "User Created" });
 
-    } catch (e) {
+    } catch (e) {        
         console.error(e);
         res.status(500).json({ msg: "Internal Server Error" });
     }
@@ -40,6 +47,10 @@ const signup = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { username, password } = req.body;
+        
+        if(!username || !password){
+            return res.status(400).json({msg:"All fields are required "});
+        }
 
         const user = await User.findOne({ username });
         if (!user) {
@@ -56,8 +67,8 @@ const login = async (req, res) => {
         res
             .cookie("token", token, {
                 httpOnly: true,
-                sameSite: "strict",
-                secure: process.env.NODE_ENV === "production",
+                sameSite: "lax",
+                secure: false,
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             })
             .status(200)
@@ -77,8 +88,8 @@ const logout = async (req, res) => {
 
         res.clearCookie("token", {
             httpOnly: true,
-            sameSite: "strict",
-            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            secure: false,
         });
 
         res.status(200).json({ msg: "Logout successful" });

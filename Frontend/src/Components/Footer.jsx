@@ -6,11 +6,10 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Hero = () => {
     const COLORS = ["#13FFAA","#0EF3C5","#FF4DA6","#7791C4"]
-    const color = useMotionValue(COLORS[0]);//motion value is tool which changes fastly rathen than rendering the whole component
+    const color = useMotionValue(COLORS[0]);
     const backgroundImage = useMotionTemplate`radial-gradient(100% 100% at 50% 0%,#020617 80%,${color})`
 
     useEffect(()=>{
-        //animate a motin value
         animate(color,COLORS,{
             duration: 10,
             repeat: Infinity,

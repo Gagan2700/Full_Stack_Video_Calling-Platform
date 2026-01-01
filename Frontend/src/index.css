@@ -27,4 +27,8 @@
         text-[5rem] font-bold px-5 py-3 text-center 
         tracking-wider absolute;
     }
+
+    input{
+        @apply text-white px-5 py-3 w-[20.12rem] rounded-lg outline-2 focus:outline-cyan-400
+    }
 }

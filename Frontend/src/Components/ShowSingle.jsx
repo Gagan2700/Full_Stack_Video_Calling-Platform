@@ -4,16 +4,12 @@ import { useRef } from "react";
 const ShowSingle = ({ title, para, imgSrc }) => {
   const ref = useRef(null);
 
-  // 1. Initialize Motion Values
   const mX = useMotionValue(0);
   const mY = useMotionValue(0);
 
-  // 2. Add Spring smoothing (optional but highly recommended for cursor following)
   const mouseX = useSpring(mX, { stiffness: 300, damping: 30, restDelta: 0.001 });
   const mouseY = useSpring(mY, { stiffness: 300, damping: 30, restDelta: 0.001 });
 
-  // 3. Create the template for the transform
-  // We handle the centering (-50%) and the dynamic mouse position here
   const transform = useMotionTemplate`translate(calc(-50% + ${mouseX}px), calc(-50% + ${mouseY}px))`;
 
   const handleMouseMove = (e) => {
@@ -58,7 +54,7 @@ const ShowSingle = ({ title, para, imgSrc }) => {
               transition={{ type: "spring" }}
               className="inline-block"
             >
-              {el === " " ? "\u00A0" : el} {/* Handles spaces in title */}
+              {el === " " ? "\u00A0" : el} 
             </motion.span>
           ))}
         </motion.section>
@@ -88,7 +84,7 @@ const ShowSingle = ({ title, para, imgSrc }) => {
         style={{
           left: 0,
           top: 0,
-          transform, // Uses our combined template
+          transform, 
         }}
       />
     </motion.div>
